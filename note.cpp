@@ -1,70 +1,71 @@
-#include "note.h"
 #include <iostream>
-#include <fstream>
 #include <string>
+#include <vector>
+#include <ctime>
+#include <fstream>
 
-using namespace std;
+//Note클래스 정의
+class Note{
+private:
+    int id;
+    std::string title;
+    std::string content;
+    std::time_t createdTime;
+    std::time_t lastModifiedTime;
+public:
+    Note(int id, std::string title, std::string content){
+        this->id = id;
+        this->title = title;
+        this->content = content;
+        this->createdTime = std::time(nullptr);
+        this->lastModifiedTime = createdTime;
+    }   
+    // 노트 저장
+    void saveNote() {
+        std::string filename = title + ".txt";
+        std::ofstream file(filename);
 
-//생성자 구현
-note::note(string title, int id, string content){
-    this->title = title; 
-    this->id =id;
-    this->content = content;
-    //createdTime과 lastModifiedDate 로직은 추후에 추가
-}
-
-// content 수정 메소드
-void note::edit(std::string newContent){
-    this->content = newContent;
-    //lastModifiedDate 업데이트 하는 로직 나중에 추가
-}
-
-//노트 display메소드
-void note::display() const {
-    cout << "Title: " << title << std::endl;
-    cout << "Content: " << content << std::endl;
-    //일단 이렇게 쓰고 나중에 변경
-}
-
-// 노트 저장 메소드 구현
-void note::save() const {
-    ofstream file;
-    file.open(title + ".txt"); //파일 이름을 title로 설정
-
-    if (file.is_open()){
-        file << "Title: "<< title << "\n";
-        file << "Content: " << content <<   "\n";
-        file.close();
-        //lastModifiedDate와 createTime은 나중에 추가?
-        cout << "Note saved successfully" << endl;
-    } 
-    else {
-        cerr << "unable to open file for writing "<< endl;
+        if (file.is_open()) {
+            file << "Title: " << title << "\n";
+            file << "Created Time: " << ctime(&createdTime);
+            file << "Last Modified Time: " << ctime(&lastModifiedTime);
+            file << "Content: " << content << "\n";
+            file.close();
+            std::cout << "노트 저장 완료 " << filename << std::endl;
+        } else {
+            std::cout << "Unable to open file" << std::endl;
+        }
     }
-}
 
-// 노트 불러오기
-void note::load(int id){
-    //id를 사용하여 노트를 불러오는 로직 구현
-}
+    // 노트 수정
+    void editNote(std::string newTitle, std::string newContent) {
+        this->title = newTitle;
+        this->content = newContent;
+        this->lastModifiedTime = std::time(nullptr);
+    }
 
-//간이 main함수
+    // 노트 정보 출력
+    void printNote() {
+        std::cout << "ID: " << id << "\nTitle: " << title << "\nContent: " << content << std::endl;
+        std::cout << "Created Time: " << ctime(&createdTime);
+        std::cout << "Last Modified Time: " << ctime(&lastModifiedTime) << std::endl;
+    }
+};
+
+// 메인 함수
 int main() {
-    string title;
-    string content;
+    std::string title, content;
+    int id = 1; // 임시 ID 할당, 실제 응용에서는 고유한 ID 생성 필요
 
-    
-    cout << "Enter the title of the note: ";
-    getline(cin, title);
+    std::cout << "Enter the title of the note: ";
+    std::getline(std::cin, title);
 
     std::cout << "Enter the content of the note: ";
     std::getline(std::cin, content);
 
-    // note 객체 생성
-    note myNote(title, 6767, content); 
-
-    myNote.save();
-    
+    Note myNote(id, title, content);
+    myNote.printNote();
+    myNote.saveNote();
 
     return 0;
 }
