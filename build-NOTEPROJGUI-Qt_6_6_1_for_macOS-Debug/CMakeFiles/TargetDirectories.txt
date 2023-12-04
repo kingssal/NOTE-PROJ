@@ -1,0 +1,9 @@
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/NOTEPROJGUI.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/edit_cache.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/rebuild_cache.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/list_install_components.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/install.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/install/local.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/install/strip.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/NOTEPROJGUI_autogen_timestamp_deps.dir
+/Users/sj.kang/Desktop/C++WORKSPACE/NOTE PROJ/build-NOTEPROJGUI-Qt_6_6_1_for_macOS-Debug/CMakeFiles/NOTEPROJGUI_autogen.dir
