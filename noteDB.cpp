@@ -1,12 +1,16 @@
+#pragma once
+
 #include "noteDB.h"
 
 //note객체 추가
-NoteDB::addNote(Note& note) {
-	notes.push_back(note);
+void NoteDB::addNote(int id, string title, string content) {
+	Note temp(id,title, content);
+	notes.push_back(temp);
+	sortDB();
 }
 
 //id로 삭제
-NoteDB::deleteNote(int i) {
+void NoteDB::deleteNote(int i) {
 	for (auto n = notes.begin(); n !=notes.end();n++) {
 		if (n->id == i) {
 			notes.erase(n);
@@ -15,18 +19,47 @@ NoteDB::deleteNote(int i) {
 	}
 }
 
-//id로 검색
-NoteDB::search(int i) {
-	for (auto n = notes.begin(); n != notes.end(); n++) {
-		if (n->id == i) {
-			return *n;
+Note& NoteDB::search(int id) {
+	for (auto& n : notes) {
+		if (n.id == id) {
+			return n;
 		}
 	}
-	return NULL;
+	Note temp(-1, "NULL", "NULL"); //없는 Note인경우 쓰레기Note반환 (id 는 -1)
+	return temp;
 }
 
-NoteDB::update(string filename) {
-	ifstream input(filename + "txt");
+void NoteDB::update() {
+	notes.clear();
+	ifstream input("filelist.txt");
+	ifstream file;
+	string str;
+	while (getline(input, str)) {
+		file.open(str + ".txt");
+		Note temp(00000, str, "");
+		temp.loadNote();
+		notes.push_back(temp);
+	}
+	sortDB();
+}
 
-	//어떤기능의 update로 구현할건지 알아야함
+void NoteDB::updateList() {
+	sortDB();
+	ofstream output("filelist.txt");
+	for (auto& n : notes) {
+		output << n.title << endl;
+	}
+}
+
+void NoteDB::save() {
+	for (auto& n : notes) {
+		n.saveNote();
+	}
+}
+void NoteDB::sortDB() {
+	sort(notes.begin(), notes.end(), compareNote);
+}
+
+bool compareNote(Note& a, Note& b) {
+	return a.title <= b.title;
 }

@@ -2,17 +2,22 @@
 
 #include <vector>
 #include <algorithm>
-#include "note.cpp"
+#include "note.h"
 
 using namespace std;
 
 class NoteDB {
 private:
-	vector<Note> notes;
+	vector<class Note> notes;
 public:
-	void addNote(Note&);
+	void addNote(int,string,string);
 	void deleteNote(int);
-	Note search(int);
-	void update(string);
+	void update();
+	void addList(string);
+	Note& search(int);
+	void updateList();
+	void save();
+	void sortDB();
 
 };
+bool compareNote(Note&, Note&);
