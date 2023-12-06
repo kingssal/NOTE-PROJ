@@ -33,6 +33,10 @@
     std::string Note::getText() {
         return content;
     }
+
+    void Note::setText(std::string str){
+        content = str;
+    }
     // 노트  로드
     void Note::loadNote() {
         std::ifstream file;

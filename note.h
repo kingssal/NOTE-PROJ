@@ -22,6 +22,7 @@ public:
     void printNote();
     std::string getText();
     void loadNote();
+    void setText(std::string);
 
 };
 
