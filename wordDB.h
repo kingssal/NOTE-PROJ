@@ -9,10 +9,10 @@
 
 using namespace std;
 
-class wordDB {
+class WordDB {
 
 private:
-	vector<Word> data const;
+	vector<Word> data;
 public:
     void addWords(string);
     void deleteWords(string);

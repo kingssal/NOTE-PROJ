@@ -63,7 +63,7 @@ string WordDB::search(string targetWord) {
         }
     }
 
-    // 검색 결과 출력
+    // 검색 결과 출력s
     if (found) {
         cout << "Word found in database: " << targetWord << endl;
     }
