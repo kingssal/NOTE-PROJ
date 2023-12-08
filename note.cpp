@@ -5,6 +5,10 @@
         this->title = title;
         this->content = content;
     }
+    int Note::getNoteID() const {
+        return this->id;
+    }
+
     void Note::saveNote() {
         std::string filename = title + ".txt";
         std::ofstream file(filename);
@@ -30,7 +34,7 @@
     void Note::printNote() {
         std::cout << "ID: " << id << "\nTitle: " << title << "\nContent: " << content << std::endl;
     }
-    std::string Note::getText() {
+    std::string Note::getText() const {
         return content;
     }
 
