@@ -17,14 +17,16 @@ private:
 public:
     Greeter (NoteDB n, WordDB w, RoadMap* r);
     void printTitle();
+    void printRoadMap();
     void printOption();
     void selectOption();
     void greeterAddNote(); //1
-    void openNote(); //2
-    void deleteNote(); //3
-    void newRoadMap(); //4
-    void opneRoadMap(); //5
-    void deleteRoadMap(); //6
-    void searchWord(); //7
+    void greeterOpenNote(); //2
+    void greeterDeleteNote(); //3
+    void greeterAddRoadMap(); //4
+    void greeterOpneRoadMap(); //5
+    void greeterCloseRoadMap(); //6
+    void greeterDeleteRoadMap(); //7
+    void greeterSearchWord(); //8
     //exit 8
 };

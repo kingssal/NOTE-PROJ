@@ -5,7 +5,8 @@
 #include "greeter.h"
 
 
-
+using namespace std;
+ 
 int main(int argc, char const *argv[])
 {
     NoteDB noteDB;
@@ -14,8 +15,15 @@ int main(int argc, char const *argv[])
     Greeter greeter(noteDB, wordDB, &rootRoadmap);
 
 	while (1) {
-		system("cls");
+		#ifdef _WIN32
+        // Windows
+            system("cls");
+        #else
+        // Unix (Linux, macOS, etc.)
+            system("clear");
+        #endif
         greeter.printTitle();
+        greeter.printRoadMap();
 		greeter.printOption();
 		greeter.selectOption();
 	}

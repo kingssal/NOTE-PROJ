@@ -21,6 +21,7 @@ public:
     void addChildRoadMap(RoadMap& child);
     void deleteChildRoadMap(const string& childRoadMapName);
     void setParentRoadMap(RoadMap* parent);
+    RoadMap* getParentRoadMap();
     string getRoadMapName() const;
     void showBranch();
     void deleteMap();

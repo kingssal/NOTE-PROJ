@@ -16,6 +16,9 @@ void printTitle(){
 	cout << "               ########## ########### ###    ####  ########      ###     ########## \n";;
     cout << endl;
 };
+void Greeter::printRoadMap(){
+    rootRoadMap->showBranch();
+}
 void printOption(){
 	cout << "        --------------------------------------------------------------------------\n";
 	cout << "             1.New note                                5.Open roadmap\n";
@@ -39,39 +42,46 @@ void Greeter::selectOption() {
 		select = -1;
 	}
 
-	system("CLS");
+	#ifdef _WIN32
+    // Windows
+        system("cls");
+    #else
+    // Unix (Linux, macOS, etc.)
+        system("clear");
+    #endif 
+
 	switch (select) {
         case 1: {
             greeterAddNote();
             break;
         }
         case 2: {
-            openNote();
+            greeterOpenNote();
             break;
         }
         case 3: {
-            deleteNote();
+            greeterDeleteNote();
             break;
 
         }
         case 4: {
-            newRoadMap();
+            greeterAddRoadMap();
             break;
         }
         case 5: {
-            opneRoadMap(); 
+            greeterOpneRoadMap(); 
             break;
         }
         case 6: {
-            deleteRoadMap();
+            greeterCloseRoadMap();
             break;
         }
         case 7: {
-            searchWord();
+            greeterDeleteRoadMap();
             break;
         }
         case 8: {
-            exit(0);
+            greeterSearchWord();
             break;
         }
         default: 
@@ -100,8 +110,9 @@ void Greeter::greeterAddNote(){
     cout << "        Enter a note name: ";
     getline(cin, noteName);
     noteDB.addNote(noteID, noteName, "");
+    rootRoadMap->addBranch(noteName);
 } //1
-void Greeter::openNote(){
+void Greeter::greeterOpenNote(){
     int noteID;
     cout << "        Enter a Note ID:";
     if(cin >> noteID && noteDB.search(noteID).getNoteID() != -1){
@@ -112,8 +123,9 @@ void Greeter::openNote(){
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+    rootRoadMap->addBranch(noteDB.search(noteID).getTitle());
 } //2
-void Greeter::deleteNote(){
+void Greeter::greeterDeleteNote(){
     int noteID;
     cout << "        Enter a Note ID:";
     if(cin >> noteID && noteDB.search(noteID).getNoteID() != -1){
@@ -124,8 +136,9 @@ void Greeter::deleteNote(){
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
+    rootRoadMap->deleteBranch(noteDB.search(noteID).getTitle());
 } //3
-void Greeter::newRoadMap(){
+void Greeter::greeterAddRoadMap(){
     string roadMapName;
     cout << "        Enter a roadmap name: ";
     getline(cin, roadMapName);
@@ -133,20 +146,24 @@ void Greeter::newRoadMap(){
     rootRoadMap->addBranch(roadMapName);
     rootRoadMap->addChildRoadMap(RoadMap);
 } //4
-void Greeter::opneRoadMap(){
+void Greeter::greeterOpneRoadMap(){
     string roadMapName;
     cout << "        Enter a roadmap name: ";
     getline(cin, roadMapName);
     rootRoadMap = &rootRoadMap->findRoadMap(roadMapName);
 } //5
-void Greeter::deleteRoadMap(){
+void Greeter::greeterCloseRoadMap(){
+    string roadMapName;
+    rootRoadMap = rootRoadMap->getParentRoadMap();
+} //5
+void Greeter::greeterDeleteRoadMap(){
     string roadMapName;
     cout << "        Enter a roadmap name: ";
     getline(cin, roadMapName);
     rootRoadMap->deleteBranch(roadMapName);
     rootRoadMap->deleteChildRoadMap(roadMapName);
 } //6
-void Greeter::searchWord(){
+void Greeter::greeterSearchWord(){
     string word;
     cout << "        Enter a roadmap word: ";
     getline(cin, word);

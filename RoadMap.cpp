@@ -218,6 +218,9 @@ vector<int> RoadMap::getIDFile() {
     file.close();
     return idList;
 }
+RoadMap* RoadMap::getParentRoadMap(){
+    return parentRoadMap;
+}
 void showRecursive(const std::string& currentPath, int depth) {
     for (const auto& entry : fs::directory_iterator(currentPath)) {
         for (int i = 0; i < depth; ++i) {

@@ -21,6 +21,7 @@ public:
     void editNote(std::string newTitle, std::string newContent);
     void printNote();
     std::string getText() const;
+    std::string getTitle() const;
     void loadNote();
     void setText(std::string);
     

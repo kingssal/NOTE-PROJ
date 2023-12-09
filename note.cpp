@@ -61,3 +61,6 @@
             }
         }
     }
+    std::string Note::getTitle() const{
+        return title;
+    }
