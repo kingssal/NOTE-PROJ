@@ -13,9 +13,9 @@ class Greeter {
 private:
     NoteDB noteDB;
     WordDB wordDB;
-    RoadMap rootRoadMap;
+    RoadMap* rootRoadMap;
 public:
-    Greeter (NoteDB n, WordDB w, RoadMap r);
+    Greeter (NoteDB n, WordDB w, RoadMap* r);
     void printTitle();
     void printOption();
     void selectOption();

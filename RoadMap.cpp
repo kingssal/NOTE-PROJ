@@ -148,6 +148,36 @@ void RoadMap::show() {// 디렉토리 안에 있는 파일 이름을 출력함 /
         std::cerr << "오류: " << e.what() << std::endl;
     }
 }
+RoadMap& RoadMap::findRoadMap(const std::string& RoadMapName) {
+    for (RoadMap& child : childRoadMap) {
+        if (child.getRoadMapName() == RoadMapName) {
+            return child;
+        }
+    }
+    std::cerr << "Error: RoadMap '" << RoadMapName << "' not found." << std::endl;
+}
+
+void RoadMap::addChildRoadMap(RoadMap& child) {
+    childRoadMap.push_back(child);
+    child.setParentRoadMap(this); // 부모 설정
+}
+
+void RoadMap::deleteChildRoadMap(const std::string& childRoadMapName) {
+    auto it = std::remove_if(childRoadMap.begin(), childRoadMap.end(),
+                             [&](const RoadMap& child) { return child.RoadMapName == childRoadMapName; });
+
+    if (it != childRoadMap.end()) {
+        childRoadMap.erase(it, childRoadMap.end());
+    } else {
+        std::cerr << "Error: RoadMap '" << childRoadMapName << "' not found." << std::endl;
+    }
+}
+void RoadMap::setParentRoadMap(RoadMap* parent){ 
+    parentRoadMap = parent;
+}
+string RoadMap::getRoadMapName() const {
+    return RoadMapName;
+}
 void RoadMap::deleteMap() {// 디렉토리 파일을 삭제함
     try {
         fs::remove_all(RoadMapName);

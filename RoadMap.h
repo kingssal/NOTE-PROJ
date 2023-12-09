@@ -17,6 +17,11 @@ public:
     void printLine(const std::string& input);
     void addBranch(const std::string& fileName);
     void deleteBranch(const std::string& fileName);
+    RoadMap& findRoadMap(const std::string& RoadMapName) ;
+    void addChildRoadMap(RoadMap& child);
+    void deleteChildRoadMap(const string& childRoadMapName);
+    void setParentRoadMap(RoadMap* parent);
+    string getRoadMapName() const;
     void show();
     void deleteMap();
     std::vector<int> getIDFile();
@@ -25,6 +30,8 @@ private:
     void createDirectory();
     void showRecursive(const std::string& currentPath, int depth);
 
-    std::string RoadMapName;
-    std::string fileID;
+    string RoadMapName;
+    string fileID;
+    vector<RoadMap> childRoadMap;
+    RoadMap* parentRoadMap;
 };
