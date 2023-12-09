@@ -18,6 +18,6 @@ public:
 	void updateList();
 	void save();
 	void sortDB();
-
+	
 };
 bool compareNote(Note&, Note&);

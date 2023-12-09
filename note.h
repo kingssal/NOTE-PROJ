@@ -23,6 +23,6 @@ public:
     std::string getText() const;
     void loadNote();
     void setText(std::string);
-
+    
 };
 
