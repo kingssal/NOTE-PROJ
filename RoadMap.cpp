@@ -154,7 +154,8 @@ RoadMap& RoadMap::findRoadMap(const std::string& RoadMapName) {
             return child;
         }
     }
-    std::cerr << "Error: RoadMap '" << RoadMapName << "' not found." << std::endl;
+    std::cerr << "Error: RoadMap '" << RoadMapName << " not found." << std::endl;
+    throw std::runtime_error("Error: RoadMap '" + RoadMapName + "' not found.");
 }
 
 void RoadMap::addChildRoadMap(RoadMap& child) {

@@ -18,7 +18,7 @@
             file << "Title: " << title << "\n";
             file << "Content: " << content << "\n";
             file.close();
-            std::cout << "노트 저장 완료 " << filename << std::endl;
+            std::cout << "Note save completed " << filename << std::endl;
         }
         else {
             std::cout << "Unable to open file" << std::endl;

@@ -9,7 +9,7 @@
 #include <sstream>
 
 using namespace std;
-namespace fs = std::filesystem;
+namespace fs = std::__fs::filesystem;
 
 class RoadMap {
 public:

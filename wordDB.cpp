@@ -1,4 +1,4 @@
-#include <wordDB.h>
+#include "wordDB.h"
 
 
 //1. DB에 단어 추가

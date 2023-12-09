@@ -19,7 +19,7 @@ void printTitle(){
 void printOption(){
 	cout << "        --------------------------------------------------------------------------\n";
 	cout << "             1.New note                                5.Open roadmap\n";
-	cout << "             2.Open note                               6.Move parent Roadmap\n";
+	cout << "             2.Open note                               6.Move parent roadmap\n";
 	cout << "             3.Delete note                             7.Delete raodmap\n";
 	cout << "             4.New roadmap                             8.Word Finder\n";
 	cout << "        --------------------------------------------------------------------------\n";
@@ -86,7 +86,6 @@ void Greeter::greeterAddNote(){
     srand((unsigned int)time(NULL));
     int noteID;
     cout << "        Enter a note ID(If you enter an invalid value, set the ID randomly):";
-    int noteID;
     // 입력 받은 값을 변수에 저장
     if (!(cin >> noteID)) {
         // 정수가 아닌 값이 입력되었을 때
