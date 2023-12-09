@@ -139,7 +139,7 @@ void RoadMap::deleteBranch(const std::string& fileName) {//파일을 디렉토�
         std::cerr << "오류: " << e.what() << std::endl;
     }
 }
-void RoadMap::show() {// 디렉토리 안에 있는 파일 이름을 출력함 // 
+void RoadMap::showBranch() {// 디렉토리 안에 있는 파일 이름을 출력함 // 
     try {
         std::cout << "로드맵 '" << RoadMapName << "'에 포함된 파일 목록:" << std::endl;
         showRecursive(RoadMapName, 0);  // 재귀 호출 시작
@@ -157,12 +157,10 @@ RoadMap& RoadMap::findRoadMap(const std::string& RoadMapName) {
     std::cerr << "Error: RoadMap '" << RoadMapName << " not found." << std::endl;
     throw std::runtime_error("Error: RoadMap '" + RoadMapName + "' not found.");
 }
-
 void RoadMap::addChildRoadMap(RoadMap& child) {
     childRoadMap.push_back(child);
     child.setParentRoadMap(this); // 부모 설정
 }
-
 void RoadMap::deleteChildRoadMap(const std::string& childRoadMapName) {
     auto it = std::remove_if(childRoadMap.begin(), childRoadMap.end(),
                              [&](const RoadMap& child) { return child.RoadMapName == childRoadMapName; });
@@ -189,6 +187,7 @@ void RoadMap::deleteMap() {// 디렉토리 파일을 삭제함
     }
 }
 void RoadMap::createDirectory() { // RoadMap을 선언하면 디렉토리를 생성함
+
     try {
         if (!fs::exists(RoadMapName)) {
             fs::create_directory(RoadMapName);
@@ -201,6 +200,23 @@ void RoadMap::createDirectory() { // RoadMap을 선언하면 디렉토리를 생
     catch (const fs::filesystem_error& e) {
         std::cerr << "디렉토리 생성 실패: " << e.what() << std::endl;
     }
+}
+vector<int> RoadMap::getIDFile() {
+    vector<int> idList;
+
+    ifstream file(fileID);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << fileID << std::endl;
+        exit(1);
+    }
+
+    int id;
+    while (file >> id) {
+        idList.push_back(id);
+    }
+
+    file.close();
+    return idList;
 }
 void showRecursive(const std::string& currentPath, int depth) {
     for (const auto& entry : fs::directory_iterator(currentPath)) {

@@ -22,7 +22,7 @@ public:
     void deleteChildRoadMap(const string& childRoadMapName);
     void setParentRoadMap(RoadMap* parent);
     string getRoadMapName() const;
-    void show();
+    void showBranch();
     void deleteMap();
     std::vector<int> getIDFile();
 

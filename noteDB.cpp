@@ -1,13 +1,13 @@
 #include "noteDB.h"
 
-//note°´Ã¼ Ãß°¡
+//noteï¿½ï¿½Ã¼ ï¿½ß°ï¿½
 void NoteDB::addNote(int id, string title, string content) {
 	Note temp(id,title, content);
 	notes.push_back(temp);
 	sortDB();
 }
 
-//id·Î »èÁ¦
+//idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void NoteDB::deleteNote(int i) {
 	for (auto n = notes.begin(); n !=notes.end();n++) {
 		if (n->id == i) {
@@ -23,7 +23,7 @@ Note& NoteDB::search(int id) {
 			return n;
 		}
 	}
-	Note temp(-1, "NULL", "NULL"); //¾ø´Â NoteÀÎ°æ¿ì ¾²·¹±âNote¹ÝÈ¯ (id ´Â -1)
+	Note temp(-1, "NULL", "NULL"); //ï¿½ï¿½ï¿½ï¿½ Noteï¿½Î°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Noteï¿½ï¿½È¯ (id ï¿½ï¿½ -1)
 	return temp;
 }
 

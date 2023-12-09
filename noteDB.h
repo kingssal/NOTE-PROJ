@@ -13,7 +13,7 @@ public:
 	void addNote(int,string,string);
 	void deleteNote(int);
 	void update();
-	void addList(string);
+	//void addlist(string);
 	Note& search(int);
 	void updateList();
 	void save();
