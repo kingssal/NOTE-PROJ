@@ -1,4 +1,0 @@
-Title: noteTest1
-Content: noteTest1 content
-Created Time: Mon Dec  4 14:10:39 2023
-Last Modified Time: Mon Dec  4 14:10:39 2023
