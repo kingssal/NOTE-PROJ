@@ -1,5 +1,3 @@
-#pragma once
-
 #include "noteDB.h"
 
 //note°´Ã¼ Ãß°¡

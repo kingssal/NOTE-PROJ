@@ -1,7 +1,5 @@
 #include <wordDB.h>
-#pragma once
 
-using namespace std;
 
 //1. DB에 단어 추가
 void WordDB::addWords(string newWord) {
