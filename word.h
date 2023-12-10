@@ -7,7 +7,8 @@
 #include <sstream> // istringstream을 사용하기 위한 헤더
 #include <fstream>
 #include <cctype>
-#include "note.cpp"
+//#include "note.cpp"
+#include "note.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ public:
     // 생성자
     Word(string w);
     // word 멤버 변수에 접근하기 위한 getter 메소드
-    string getWord() const ;
+    string getWord() const;
     // wordLocation를 추가하는 메소드
     void addLocation(int noteAddress, int position);
     //특수문자 저장하는
