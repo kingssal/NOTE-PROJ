@@ -6,6 +6,9 @@
 #include "wordDB.h"
 #include "RoadMap.h"
 #include <iostream>
+#include <cctype>
+#include <cstdlib>//
+#include <ctime> 
 
 using namespace std;
 
@@ -15,7 +18,7 @@ private:
     WordDB wordDB;
     RoadMap* rootRoadMap;
 public:
-    Greeter (NoteDB n, WordDB w, RoadMap* r);
+    Greeter(NoteDB n, WordDB w, RoadMap* r);
     void printTitle();
     void printRoadMap();
     void printOption();
