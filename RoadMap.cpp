@@ -8,7 +8,7 @@ void RoadMap::printLine(const std::string& input) {// input은 wordDB에서 얻�
     // 단어에 대해서 가중치 표현하는 함수
 
     std::unordered_map<string, float> countMap;
-    
+
     size_t pipe_pos = input.find('|');
     std::string result;
     string findWord = input.substr(0, pipe_pos);
@@ -19,17 +19,17 @@ void RoadMap::printLine(const std::string& input) {// input은 wordDB에서 얻�
     }
     std::istringstream iss(result);
     std::string pattern;
-    
+
     while (std::getline(iss, pattern, ',')) {
         // ':'를 기준으로 숫자를 분할
         size_t pos = pattern.find(':');
 
         if (pos != std::string::npos) {
-            std::string key = pattern.substr(0, pos); 
+            std::string key = pattern.substr(0, pos);
 
             // 맵에 패턴이 이미 있는지 확인 후 카운트 증가
             countMap[key]++;
-        
+
         }
     }
     ifstream file(fileID);
@@ -44,7 +44,7 @@ void RoadMap::printLine(const std::string& input) {// input은 wordDB에서 얻�
             if (countMap[line] > max_value) max_value = countMap[line];
         }
     }
-    
+
     // 최대값을 이용하여 모든 int에 나누기
     if (max_value != std::numeric_limits<float>::min() && max_value != 0) {
         for (auto& pair : countMap) {
@@ -53,8 +53,8 @@ void RoadMap::printLine(const std::string& input) {// input은 wordDB에서 얻�
     }
     file.clear();
     file.seekg(0, ios::beg);
-    
-    
+
+
     std::cout << "Similarity for " << findWord << std::endl;
     while (getline(file, line)) {
         if (countMap.find(line) != countMap.end()) {
@@ -62,11 +62,11 @@ void RoadMap::printLine(const std::string& input) {// input은 wordDB에서 얻�
             printf("%.2f\n", countMap[line]);
         }
         else {
-            cout << "ID" << line  << " : 0\n";
+            cout << "ID" << line << " : 0\n";
         }
     }
     file.close();
-    
+
 
 }
 void RoadMap::addBranch(const std::string& fileName) { // 파일을 디렉토리에 복사하여 저장함. 파일 값이 변할 때 마다 호출해야함
@@ -79,8 +79,8 @@ void RoadMap::addBranch(const std::string& fileName) { // 파일을 디렉토리
             if (!inputFile.is_open()) {
                 std::cerr << "Error opening input file." << std::endl;
                 exit(1);
-            }              
-            
+            }
+
             string line;
             getline(inputFile, line);
             size_t pos = line.find(":");
@@ -90,7 +90,7 @@ void RoadMap::addBranch(const std::string& fileName) { // 파일을 디렉토리
                 std::cerr << "Error opening output file." << std::endl;
                 exit(1);
             }
-        
+
 
             ifstream file(fileID);
             if (!file.is_open()) {
@@ -104,19 +104,19 @@ void RoadMap::addBranch(const std::string& fileName) { // 파일을 디렉토리
                     break;
                 }
             }
-                if (first) {
-                    
-                    outputFile << ID << std::endl;
-                    
-                }
-            
+            if (first) {
+
+                outputFile << ID << std::endl;
+
+            }
+
             file.close();
-            inputFile.close();  
+            inputFile.close();
             outputFile.close();
         }
         fs::copy(sourcePath, destinationPath, fs::copy_options::overwrite_existing);
         std::cout << "브랜치 추가 성공: " << fileName << " -> " << RoadMapName << std::endl;
-        
+
     }
     catch (const fs::filesystem_error& e) {
         std::cerr << "오류: " << e.what() << std::endl;
@@ -163,15 +163,16 @@ void RoadMap::addChildRoadMap(RoadMap& child) {
 }
 void RoadMap::deleteChildRoadMap(const std::string& childRoadMapName) {
     auto it = std::remove_if(childRoadMap.begin(), childRoadMap.end(),
-                             [&](const RoadMap& child) { return child.RoadMapName == childRoadMapName; });
+        [&](const RoadMap& child) { return child.RoadMapName == childRoadMapName; });
 
     if (it != childRoadMap.end()) {
         childRoadMap.erase(it, childRoadMap.end());
-    } else {
+    }
+    else {
         std::cerr << "Error: RoadMap '" << childRoadMapName << "' not found." << std::endl;
     }
 }
-void RoadMap::setParentRoadMap(RoadMap* parent){ 
+void RoadMap::setParentRoadMap(RoadMap* parent) {
     parentRoadMap = parent;
 }
 string RoadMap::getRoadMapName() const {
@@ -218,10 +219,10 @@ vector<int> RoadMap::getIDFile() {
     file.close();
     return idList;
 }
-RoadMap* RoadMap::getParentRoadMap(){
+RoadMap* RoadMap::getParentRoadMap() {
     return parentRoadMap;
 }
-void showRecursive(const std::string& currentPath, int depth) {
+void RoadMap::showRecursive(const std::string& currentPath, int depth) {
     for (const auto& entry : fs::directory_iterator(currentPath)) {
         for (int i = 0; i < depth; ++i) {
             std::cout << " - ";
